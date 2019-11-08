@@ -8391,11 +8391,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mrtht\\Desktop\\NewStyleShop\\NewStyleShop\\NewStyleShop.csproj",
+      "projectUniqueName": "C:\\Users\\mrtht\\Documents\\GitHub\\WEB_NewStyleShop\\NewStyleShop\\NewStyleShop\\NewStyleShop.csproj",
       "projectName": "NewStyleShop",
-      "projectPath": "C:\\Users\\mrtht\\Desktop\\NewStyleShop\\NewStyleShop\\NewStyleShop.csproj",
+      "projectPath": "C:\\Users\\mrtht\\Documents\\GitHub\\WEB_NewStyleShop\\NewStyleShop\\NewStyleShop\\NewStyleShop.csproj",
       "packagesPath": "C:\\Users\\mrtht\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mrtht\\Desktop\\NewStyleShop\\NewStyleShop\\obj\\",
+      "outputPath": "C:\\Users\\mrtht\\Documents\\GitHub\\WEB_NewStyleShop\\NewStyleShop\\NewStyleShop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
