@@ -10,7 +10,7 @@ using NewStyleShop_1.Data;
 namespace NewStyleShop_1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191113084931_database")]
+    [Migration("20191115041714_database")]
     partial class database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -268,6 +268,33 @@ namespace NewStyleShop_1.Migrations
                     b.ToTable("AdminAccounts");
                 });
 
+            modelBuilder.Entity("NewStyleShop_1.Models.Appointments", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CustomerEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isConfirmed")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Appointments");
+                });
+
             modelBuilder.Entity("NewStyleShop_1.Models.Bill", b =>
                 {
                     b.Property<int>("ID")
@@ -414,6 +441,28 @@ namespace NewStyleShop_1.Migrations
                     b.HasIndex("CategoryID");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("NewStyleShop_1.Models.ProductsSelectedForAppointment", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AppointmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AppointmentId");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("ProductsSelectedForAppointment");
                 });
 
             modelBuilder.Entity("NewStyleShop_1.Models.User", b =>
@@ -576,6 +625,21 @@ namespace NewStyleShop_1.Migrations
                     b.HasOne("NewStyleShop_1.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("NewStyleShop_1.Models.ProductsSelectedForAppointment", b =>
+                {
+                    b.HasOne("NewStyleShop_1.Models.Appointments", "Appointments")
+                        .WithMany()
+                        .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NewStyleShop_1.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

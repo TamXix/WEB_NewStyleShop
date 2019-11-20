@@ -20,5 +20,8 @@ namespace NewStyleShop_1.Data
         public DbSet<BillDetail> BillDetails { get; set; }
         public DbSet<Voucher> Vouchers { get; set; }
 
+        public DbSet<Appointments> Appointments { get; set; }
+        public DbSet<ProductsSelectedForAppointment> ProductsSelectedForAppointment { get; set; }
+
     }
 }

@@ -4,7 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NewStyleShop_1.Data;
+using NewStyleShop_1.Extension;
+using Microsoft.AspNetCore.Http;
 using NewStyleShop_1.Models;
 
 namespace NewStyleShop_1.Controllers
@@ -12,16 +16,52 @@ namespace NewStyleShop_1.Controllers
     [Area("Customer")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext db)
         {
-            _logger = logger;
+            _db = db;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var productList = await _db.Products.Include(m => m.Category).ToListAsync();
+            return View(productList);
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var product = await _db.Products.Include(m => m.Category).Where(m => m.ID == id).FirstOrDefaultAsync();
+            return View(product);
+        }
+
+        [HttpPost, ActionName("Details")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DetailsPost(int id)
+        {
+            List<int> lstShoppingCart = HttpContext.Session.Get<List<int>>("ssShoppingCart");
+            if(lstShoppingCart == null)
+            {
+                lstShoppingCart = new List<int>();
+            }
+            lstShoppingCart.Add(id);
+            HttpContext.Session.Set("ssShoppingCart", lstShoppingCart);
+
+            return RedirectToAction("Index", "Home", new { Area = "Customer" });
+        }
+
+        public IActionResult Remove(int id)
+        {
+            List<int> lstShoppingCart = HttpContext.Session.Get<List<int>>("ssShoppingCart");
+            if(lstShoppingCart.Count > 0)
+            {
+                if(lstShoppingCart.Contains(id))
+                {
+                    lstShoppingCart.Remove(id);
+                }
+            }
+            HttpContext.Session.Set("ssShoppingCart", lstShoppingCart);
+
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Privacy()

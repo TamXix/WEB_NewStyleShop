@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mrtht\\Documents\\GitHub\\DoAnWeb\\NewStyleShop_1\\NewStyleShop_1.csproj": {}
+    "C:\\Users\\mrtht\\Documents\\GitHub\\TÂM\\NewStyleShop_1\\NewStyleShop_1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mrtht\\Documents\\GitHub\\DoAnWeb\\NewStyleShop_1\\NewStyleShop_1.csproj": {
+    "C:\\Users\\mrtht\\Documents\\GitHub\\TÂM\\NewStyleShop_1\\NewStyleShop_1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mrtht\\Documents\\GitHub\\DoAnWeb\\NewStyleShop_1\\NewStyleShop_1.csproj",
+        "projectUniqueName": "C:\\Users\\mrtht\\Documents\\GitHub\\TÂM\\NewStyleShop_1\\NewStyleShop_1.csproj",
         "projectName": "NewStyleShop_1",
-        "projectPath": "C:\\Users\\mrtht\\Documents\\GitHub\\DoAnWeb\\NewStyleShop_1\\NewStyleShop_1.csproj",
+        "projectPath": "C:\\Users\\mrtht\\Documents\\GitHub\\TÂM\\NewStyleShop_1\\NewStyleShop_1.csproj",
         "packagesPath": "C:\\Users\\mrtht\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mrtht\\Documents\\GitHub\\DoAnWeb\\NewStyleShop_1\\obj\\",
+        "outputPath": "C:\\Users\\mrtht\\Documents\\GitHub\\TÂM\\NewStyleShop_1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

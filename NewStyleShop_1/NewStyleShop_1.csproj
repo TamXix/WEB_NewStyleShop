@@ -8,6 +8,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20191112152343_database.cs" />
     <Compile Remove="Migrations\20191112152343_database.Designer.cs" />
+    <Compile Remove="Migrations\20191113084931_database.cs" />
+    <Compile Remove="Migrations\20191113084931_database.Designer.cs" />
+    <Compile Remove="Migrations\20191113090836_database.cs" />
+    <Compile Remove="Migrations\20191113090836_database.Designer.cs" />
+    <Compile Remove="Migrations\20191115041330_addAppointmentsAndProductsSelectedForApp.cs" />
+    <Compile Remove="Migrations\20191115041330_addAppointmentsAndProductsSelectedForApp.Designer.cs" />
   </ItemGroup>
 
 

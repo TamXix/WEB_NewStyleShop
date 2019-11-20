@@ -1,6 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using NewStyleShop_1.Extension
+@using NewStyleShop_1.Utility
+
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--  THÊM VÀO  -->
+    <link rel="stylesheet" href="~/css/jquery.timepicker.css" />
+    <link rel="stylesheet" href="~/css/jquery-ui.css" />
+
+    <!--  THÊM VÀO  -->
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NewStyleShop_1</title>
@@ -26,11 +37,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        <!--<li class="nav-item">
+                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                          </li>
+
+                          <li class="nav-item">
+                              <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bill" asp-action="Index">Bill</a>
+                          </li>
+                        -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminAccount" asp-action="Index">AdminAccount</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="Index">User</a>
@@ -38,15 +60,31 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Voucher" asp-action="Index">Voucher</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminAccount" asp-action="Index">AdminAccount</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Bill" asp-action="Index">Bill</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
-                        </li>
+
+                        @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart") != null)
+                        {
+                            <li style="color:white">
+                                <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i> &nbsp;
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart").Count;
+                                    }
+                                    (@count)
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li style="color:white">
+                                <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i> &nbsp;
+
+                                    (0)
+                                </a>
+                            </li>
+
+                        }
+
                     </ul>
                 </div>
             </div>
@@ -70,6 +108,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--  THÊM VÀO  -->
+    <script src="~/js/jquery.timepicker.js"></script>
+    <script src="~/js/jquery-ui.js"></script>
+
+    <!--  THÊM VÀO  -->
 
     @RenderSection("Scripts", required: false)
 </body>

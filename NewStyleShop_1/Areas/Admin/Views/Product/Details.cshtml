@@ -1,0 +1,119 @@
+﻿@model NewStyleShop_1.Models.ViewModel.ProductsViewModel
+@using NewStyleShop_1.Extension
+
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info"> Product Details</h2>
+    </div>
+</div>
+<form  method="post" enctype="multipart/form-data">
+    <div class="p-4 border rounded row">
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.Name" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.Name" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.MetaTittle" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.MetaTittle" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.Code" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.Code" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.Description" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.Description" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.Price" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.Price" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.PromotionPrice" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.PromotionPrice" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.Quantity" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.Quantity" readonly class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.IsMale" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input type="checkbox" asp-for="Product.IsMale" disabled  />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.Top" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input type="checkbox" asp-for="Product.Top" disabled  />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.Status" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input type="checkbox" Product.Status" disabled  asp-for="Product.Status" />
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.Category" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.Category.Name" readonly class="form-control"/>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3">
+            <img src="@Model.Product.Image" width="100%" style="border-radius:5px; border:1px solid #bbb9b9;" />
+        </div>
+        <br />
+        <div class="form-group">
+            <a asp-action="Edit" class="btn btn-primary" asp-route-id="@Model.Product.ID">Edit</a>
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+
+
+
+
+

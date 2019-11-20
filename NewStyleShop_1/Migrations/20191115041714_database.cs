@@ -29,6 +29,23 @@ namespace NewStyleShop_1.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Appointments",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AppointmentDate = table.Column<DateTime>(nullable: false),
+                    CustomerName = table.Column<string>(nullable: true),
+                    CustomerPhoneNumber = table.Column<string>(nullable: true),
+                    CustomerEmail = table.Column<string>(nullable: true),
+                    isConfirmed = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Appointments", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -284,6 +301,32 @@ namespace NewStyleShop_1.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProductsSelectedForAppointment",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AppointmentId = table.Column<int>(nullable: false),
+                    ProductID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductsSelectedForAppointment", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_ProductsSelectedForAppointment_Appointments_AppointmentId",
+                        column: x => x.AppointmentId,
+                        principalTable: "Appointments",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductsSelectedForAppointment_Products_ProductID",
+                        column: x => x.ProductID,
+                        principalTable: "Products",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BillDetails",
                 columns: table => new
                 {
@@ -369,6 +412,16 @@ namespace NewStyleShop_1.Migrations
                 name: "IX_Products_CategoryID",
                 table: "Products",
                 column: "CategoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductsSelectedForAppointment_AppointmentId",
+                table: "ProductsSelectedForAppointment",
+                column: "AppointmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductsSelectedForAppointment_ProductID",
+                table: "ProductsSelectedForAppointment",
+                column: "ProductID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -395,6 +448,9 @@ namespace NewStyleShop_1.Migrations
                 name: "BillDetails");
 
             migrationBuilder.DropTable(
+                name: "ProductsSelectedForAppointment");
+
+            migrationBuilder.DropTable(
                 name: "Vouchers");
 
             migrationBuilder.DropTable(
@@ -405,6 +461,9 @@ namespace NewStyleShop_1.Migrations
 
             migrationBuilder.DropTable(
                 name: "Bills");
+
+            migrationBuilder.DropTable(
+                name: "Appointments");
 
             migrationBuilder.DropTable(
                 name: "Products");
